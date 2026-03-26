@@ -1,3 +1,4 @@
+import DashboardMetrics from "@/components/cards/DashboardMetrics";
 import { useUsers } from "../features/users/hooks/useUser";
 
 const DashboardPage = () => {
@@ -7,12 +8,14 @@ const DashboardPage = () => {
 
   if (error) return <div>Error loading users</div>;
 
+  if (!data) return null;
+
   return (
     <>
-      <div className="text-center">Dashboard</div>
-      <div>
-        <h1>Dashboard</h1>
-        <p>Total Users: {data?.length}</p>
+      <div className="p-8 space-y-8">
+        <h1 className="text-3xl font-bold">Analytics Dashboard</h1>
+
+        <DashboardMetrics users={data} />
       </div>
       <div>Metrics</div>
       <div>Charts</div>
