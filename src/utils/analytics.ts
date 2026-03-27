@@ -16,15 +16,20 @@ export function getUserGrowth(users: User[]) {
 
   users.forEach((user) => {
     const date = new Date(user.signupDate);
-    const key = `${date.getFullYear()}-${date.getMonth() + 1}`;
+    const key = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(
+      2,
+      "0"
+    )}`;
 
     growthMap[key] = (growthMap[key] || 0) + 1;
   });
 
-  return Object.entries(growthMap).map(([month, count]) => ({
-    month,
-    users: count,
-  }));
+  return Object.entries(growthMap)
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([month, count]) => ({
+      month,
+      users: count,
+    }));
 }
 
 // counts users by device type for device pie chart
