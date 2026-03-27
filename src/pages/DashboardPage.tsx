@@ -1,6 +1,7 @@
 import DashboardMetrics from "@/components/cards/DashboardMetrics";
 import { useUsers } from "../features/users/hooks/useUser";
 import ChartsSection from "@/components/charts/ChartsSection";
+import UserTable from "@/features/users/components/UserTable";
 
 const DashboardPage = () => {
   const { data, isLoading, error } = useUsers();
@@ -18,6 +19,7 @@ const DashboardPage = () => {
 
         <DashboardMetrics users={data} />
         <ChartsSection users={data} topCount={5} />
+        <UserTable users={data} />
       </div>
 
       <div>Filters Table</div>
